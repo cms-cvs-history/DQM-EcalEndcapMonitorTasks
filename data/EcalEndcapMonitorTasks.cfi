@@ -1,0 +1,87 @@
+
+module ecalEndcapOccupancyTask = EEOccupancyTask{
+  InputTag EBDigiCollection = ecalEBunpacker:
+  InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
+}
+module ecalEndcapIntegrityTask = EEIntegrityTask{
+  InputTag EBDetIdCollection0 = ecalEBunpacker:EcalIntegrityDCCSizeErrors
+  InputTag EBDetIdCollection1 = ecalEBunpacker:EcalIntegrityGainErrors
+  InputTag EBDetIdCollection2 = ecalEBunpacker:EcalIntegrityChIdErrors
+  InputTag EBDetIdCollection3 = ecalEBunpacker:EcalIntegrityGainSwitchErrors
+  InputTag EBDetIdCollection4 = ecalEBunpacker:EcalIntegrityGainSwitchStayErrors
+  InputTag EcalTrigTowerDetIdCollection1 = ecalEBunpacker:EcalIntegrityTTIdErrors
+  InputTag EcalTrigTowerDetIdCollection2 = ecalEBunpacker:EcalIntegrityBlockSizeErrors
+  InputTag EcalElectronicsIdCollection1 = ecalEBunpacker:EcalIntegrityMemTtIdErrors
+  InputTag EcalElectronicsIdCollection2 = ecalEBunpacker:EcalIntegrityMemBlockSize
+  InputTag EcalElectronicsIdCollection3 = ecalEBunpacker:EcalIntegrityMemChIdErrors
+  InputTag EcalElectronicsIdCollection4 = ecalEBunpacker:EcalIntegrityMemGainErrors
+}
+module ecalEndcapCosmicTask = EECosmicTask{
+  InputTag EcalRawDataCollection = ecalEBunpacker:
+  InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEB
+}
+module ecalEndcapLaserTask = EELaserTask{
+  InputTag EcalRawDataCollection = ecalEBunpacker:
+  InputTag EBDigiCollection = ecalEBunpacker:
+  InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
+  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
+}
+module ecalEndcapPedestalOnlineTask = EEPedestalOnlineTask{
+  InputTag EBDigiCollection = ecalEBunpacker:
+}
+module ecalEndcapPedestalTask = EEPedestalTask{
+  InputTag EcalRawDataCollection = ecalEBunpacker:
+  InputTag EBDigiCollection = ecalEBunpacker:
+  InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
+}
+module ecalEndcapTestPulseTask = EETestPulseTask{
+  InputTag EcalRawDataCollection = ecalEBunpacker:
+  InputTag EBDigiCollection = ecalEBunpacker:
+  InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
+  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
+}
+module ecalEndcapTriggerTowerTask = EETriggerTowerTask{
+  InputTag EcalTrigPrimDigiCollection = ecalEBunpacker:
+  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
+}
+module ecalEndcapTimingTask = EETimingTask{
+  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
+}
+module ecalEndcapBeamHodoTask = EEBeamHodoTask{
+  InputTag EcalTBEventHeader = ecalEBunpacker:
+  InputTag EcalRawDataCollection = ecalEBunpacker:
+  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
+  InputTag EcalTBHodoscopeRawInfo = ecalEBunpacker:
+  InputTag EcalTBTDCRawInfo = ecalEBunpacker:
+  InputTag EcalTBTDCRecInfo = ecal2006TBTDCReconstructor:EcalTBTDCRecInfo
+  InputTag EcalTBHodoscopeRecInfo = ecal2006TBHodoscopeReconstructor:EcalTBHodoscopeRecInfo
+}
+module ecalEndcapBeamCaloTask = EEBeamCaloTask{
+  InputTag EcalTBEventHeader = ecalEBunpacker:
+  InputTag EcalRawDataCollection = ecalEBunpacker:
+  InputTag EBDigiCollection = ecalEBunpacker:
+  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
+}
+module ecalEndcapClusterTask = EEClusterTask{ 
+  InputTag islandBarrelBasicClusterCollection = islandBasicClusters:islandBarrelBasicClusters
+  InputTag islandBarrelSuperClusterCollection = islandSuperClusters:islandBarrelSuperClusters
+  InputTag hybridSuperClusterCollection = hybridSuperClusters:
+  InputTag hybridBarrelClusterShapeAssociation = hybridSuperClusters:hybridShapeAssoc
+}
+
+sequence ecalEndcapDefaultTasksSequence = { ecalEndcapOccupancyTask,
+                                            ecalEndcapIntegrityTask,
+                                            ecalEndcapLaserTask,
+                                            ecalEndcapPedestalOnlineTask,
+                                            ecalEndcapPedestalTask,
+                                            ecalEndcapTestPulseTask,
+                                            ecalEndcapTriggerTowerTask,
+                                            ecalEndcapTimingTask }
+
+sequence ecalEndcapCosmicTasksSequence = { ecalEndcapDefaultTasksSequence,
+                                           ecalEndcapCosmicTask }
+
+sequence ecalEndcapTestBeamTasksSequence = { ecalEndcapDefaultTasksSequence,
+                                             ecalEndcapBeamHodoTask,
+                                             ecalEndcapBeamCaloTask }
+
