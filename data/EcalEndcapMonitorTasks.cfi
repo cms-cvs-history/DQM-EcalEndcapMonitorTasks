@@ -1,9 +1,11 @@
 
 module ecalEndcapOccupancyTask = EEOccupancyTask{
+  untracked bool enableCleanup = true
   InputTag EBDigiCollection = ecalEBunpacker:
   InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
 }
 module ecalEndcapIntegrityTask = EEIntegrityTask{
+  untracked bool enableCleanup = true
   InputTag EBDetIdCollection0 = ecalEBunpacker:EcalIntegrityDCCSizeErrors
   InputTag EBDetIdCollection1 = ecalEBunpacker:EcalIntegrityGainErrors
   InputTag EBDetIdCollection2 = ecalEBunpacker:EcalIntegrityChIdErrors
@@ -17,37 +19,45 @@ module ecalEndcapIntegrityTask = EEIntegrityTask{
   InputTag EcalElectronicsIdCollection4 = ecalEBunpacker:EcalIntegrityMemGainErrors
 }
 module ecalEndcapCosmicTask = EECosmicTask{
+  untracked bool enableCleanup = true
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEB
 }
 module ecalEndcapLaserTask = EELaserTask{
+  untracked bool enableCleanup = true
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EBDigiCollection = ecalEBunpacker:
   InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
   InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
 }
 module ecalEndcapPedestalOnlineTask = EEPedestalOnlineTask{
+  untracked bool enableCleanup = true
   InputTag EBDigiCollection = ecalEBunpacker:
 }
 module ecalEndcapPedestalTask = EEPedestalTask{
+  untracked bool enableCleanup = true
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EBDigiCollection = ecalEBunpacker:
   InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
 }
 module ecalEndcapTestPulseTask = EETestPulseTask{
+  untracked bool enableCleanup = true
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EBDigiCollection = ecalEBunpacker:
   InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
   InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
 }
 module ecalEndcapTriggerTowerTask = EETriggerTowerTask{
+  untracked bool enableCleanup = true
   InputTag EcalTrigPrimDigiCollection = ecalEBunpacker:
   InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
 }
 module ecalEndcapTimingTask = EETimingTask{
+  untracked bool enableCleanup = true
   InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
 }
 module ecalEndcapBeamHodoTask = EEBeamHodoTask{
+  untracked bool enableCleanup = true
   InputTag EcalTBEventHeader = ecalEBunpacker:
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
@@ -57,12 +67,14 @@ module ecalEndcapBeamHodoTask = EEBeamHodoTask{
   InputTag EcalTBHodoscopeRecInfo = ecal2006TBHodoscopeReconstructor:EcalTBHodoscopeRecInfo
 }
 module ecalEndcapBeamCaloTask = EEBeamCaloTask{
+  untracked bool enableCleanup = true
   InputTag EcalTBEventHeader = ecalEBunpacker:
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EBDigiCollection = ecalEBunpacker:
   InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
 }
 module ecalEndcapClusterTask = EEClusterTask{ 
+  untracked bool enableCleanup = true
   InputTag islandBarrelBasicClusterCollection = islandBasicClusters:islandBarrelBasicClusters
   InputTag islandBarrelSuperClusterCollection = islandSuperClusters:islandBarrelSuperClusters
   InputTag hybridSuperClusterCollection = hybridSuperClusters:
