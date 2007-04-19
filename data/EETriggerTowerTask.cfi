@@ -1,0 +1,5 @@
+module ecalEndcapTriggerTowerTask = EETriggerTowerTask{
+  untracked bool enableCleanup = true
+  InputTag EcalTrigPrimDigiCollection = ecalEBunpacker:
+  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
+}

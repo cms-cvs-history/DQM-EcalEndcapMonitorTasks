@@ -1,85 +1,20 @@
 
-module ecalEndcapOccupancyTask = EEOccupancyTask{
-  untracked bool enableCleanup = true
-  InputTag EBDigiCollection = ecalEBunpacker:
-  InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
-}
-module ecalEndcapIntegrityTask = EEIntegrityTask{
-  untracked bool enableCleanup = true
-  InputTag EBDetIdCollection0 = ecalEBunpacker:EcalIntegrityDCCSizeErrors
-  InputTag EBDetIdCollection1 = ecalEBunpacker:EcalIntegrityGainErrors
-  InputTag EBDetIdCollection2 = ecalEBunpacker:EcalIntegrityChIdErrors
-  InputTag EBDetIdCollection3 = ecalEBunpacker:EcalIntegrityGainSwitchErrors
-  InputTag EBDetIdCollection4 = ecalEBunpacker:EcalIntegrityGainSwitchStayErrors
-  InputTag EcalTrigTowerDetIdCollection1 = ecalEBunpacker:EcalIntegrityTTIdErrors
-  InputTag EcalTrigTowerDetIdCollection2 = ecalEBunpacker:EcalIntegrityBlockSizeErrors
-  InputTag EcalElectronicsIdCollection1 = ecalEBunpacker:EcalIntegrityMemTtIdErrors
-  InputTag EcalElectronicsIdCollection2 = ecalEBunpacker:EcalIntegrityMemBlockSize
-  InputTag EcalElectronicsIdCollection3 = ecalEBunpacker:EcalIntegrityMemChIdErrors
-  InputTag EcalElectronicsIdCollection4 = ecalEBunpacker:EcalIntegrityMemGainErrors
-}
-module ecalEndcapCosmicTask = EECosmicTask{
-  untracked bool enableCleanup = true
-  InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEB
-}
-module ecalEndcapLaserTask = EELaserTask{
-  untracked bool enableCleanup = true
-  InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EBDigiCollection = ecalEBunpacker:
-  InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
-  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
-}
-module ecalEndcapPedestalOnlineTask = EEPedestalOnlineTask{
-  untracked bool enableCleanup = true
-  InputTag EBDigiCollection = ecalEBunpacker:
-}
-module ecalEndcapPedestalTask = EEPedestalTask{
-  untracked bool enableCleanup = true
-  InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EBDigiCollection = ecalEBunpacker:
-  InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
-}
-module ecalEndcapTestPulseTask = EETestPulseTask{
-  untracked bool enableCleanup = true
-  InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EBDigiCollection = ecalEBunpacker:
-  InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
-  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
-}
-module ecalEndcapTriggerTowerTask = EETriggerTowerTask{
-  untracked bool enableCleanup = true
-  InputTag EcalTrigPrimDigiCollection = ecalEBunpacker:
-  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
-}
-module ecalEndcapTimingTask = EETimingTask{
-  untracked bool enableCleanup = true
-  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
-}
-module ecalEndcapBeamHodoTask = EEBeamHodoTask{
-  untracked bool enableCleanup = true
-  InputTag EcalTBEventHeader = ecalEBunpacker:
-  InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
-  InputTag EcalTBHodoscopeRawInfo = ecalEBunpacker:
-  InputTag EcalTBTDCRawInfo = ecalEBunpacker:
-  InputTag EcalTBTDCRecInfo = ecal2006TBTDCReconstructor:EcalTBTDCRecInfo
-  InputTag EcalTBHodoscopeRecInfo = ecal2006TBHodoscopeReconstructor:EcalTBHodoscopeRecInfo
-}
-module ecalEndcapBeamCaloTask = EEBeamCaloTask{
-  untracked bool enableCleanup = true
-  InputTag EcalTBEventHeader = ecalEBunpacker:
-  InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EBDigiCollection = ecalEBunpacker:
-  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
-}
-module ecalEndcapClusterTask = EEClusterTask{ 
-  untracked bool enableCleanup = true
-  InputTag islandBarrelBasicClusterCollection = islandBasicClusters:islandBarrelBasicClusters
-  InputTag islandBarrelSuperClusterCollection = islandSuperClusters:islandBarrelSuperClusters
-  InputTag hybridSuperClusterCollection = hybridSuperClusters:
-  InputTag hybridBarrelClusterShapeAssociation = hybridSuperClusters:hybridShapeAssoc
-}
+include "DQM/EcalEndcapMonitorTasks/data/EEOccupancyTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEIntegrityTask.cfi"
+
+include "DQM/EcalEndcapMonitorTasks/data/EECosmicTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EELaserTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEPedestalOnlineTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEPedestalTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EETestPulseTask.cfi"
+
+include "DQM/EcalEndcapMonitorTasks/data/EETriggerTowerTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EETimingTask.cfi"
+
+include "DQM/EcalEndcapMonitorTasks/data/EEBeamHodoTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEBeamCaloTask.cfi"
+
+include "DQM/EcalEndcapMonitorTasks/data/EEClusterTask.cfi"
 
 sequence ecalEndcapDefaultTasksSequence = { ecalEndcapOccupancyTask,
                                             ecalEndcapIntegrityTask,
