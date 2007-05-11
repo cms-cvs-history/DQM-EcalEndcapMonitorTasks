@@ -1,7 +1,0 @@
-module ecalEndcapLaserTask = EELaserTask{
-  untracked bool enableCleanup = true
-  InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EBDigiCollection = ecalEBunpacker:
-  InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
-  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
-}

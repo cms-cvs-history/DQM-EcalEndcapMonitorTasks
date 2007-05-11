@@ -1,7 +1,0 @@
-module ecalEndcapClusterTask = EEClusterTask{
-  untracked bool enableCleanup = true
-  InputTag islandBarrelBasicClusterCollection = islandBasicClusters:islandBarrelBasicClusters
-  InputTag islandBarrelSuperClusterCollection = islandSuperClusters:islandBarrelSuperClusters
-  InputTag hybridSuperClusterCollection = hybridSuperClusters:
-  InputTag hybridBarrelClusterShapeAssociation = hybridSuperClusters:hybridShapeAssoc
-}
