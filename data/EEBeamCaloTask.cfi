@@ -2,6 +2,6 @@ module ecalEndcapBeamCaloTask = EEBeamCaloTask{
   untracked bool enableCleanup = true
   InputTag EcalTBEventHeader = ecalEBunpacker:
   InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EBDigiCollection = ecalEBunpacker:
+  InputTag EBDigiCollection = ecalEBunpacker:ebDigis
   InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB
 }

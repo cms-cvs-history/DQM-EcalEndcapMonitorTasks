@@ -1,6 +1,6 @@
 module ecalEndcapPedestalTask = EEPedestalTask{
   untracked bool enableCleanup = true
   InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EBDigiCollection = ecalEBunpacker:
+  InputTag EBDigiCollection = ecalEBunpacker:ebDigis
   InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
 }
