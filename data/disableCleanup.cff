@@ -3,6 +3,7 @@ replace ecalEndcapOccupancyTask.enableCleanup = false
 replace ecalEndcapIntegrityTask.enableCleanup = false
 replace ecalEndcapCosmicTask.enableCleanup = false
 replace ecalEndcapLaserTask.enableCleanup = false
+replace ecalEndcapLedTask.enableCleanup = false
 replace ecalEndcapPedestalOnlineTask.enableCleanup = false
 replace ecalEndcapPedestalTask.enableCleanup = false
 replace ecalEndcapTestPulseTask.enableCleanup = false
