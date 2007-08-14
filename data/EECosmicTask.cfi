@@ -1,5 +1,5 @@
 module ecalEndcapCosmicTask = EECosmicTask{
   untracked bool enableCleanup = true
   InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEB
+  InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEE
 }

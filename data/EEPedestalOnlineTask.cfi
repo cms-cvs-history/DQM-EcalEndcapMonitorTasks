@@ -1,4 +1,4 @@
 module ecalEndcapPedestalOnlineTask = EEPedestalOnlineTask{
   untracked bool enableCleanup = true
-  InputTag EBDigiCollection = ecalEBunpacker:ebDigis
+  InputTag EEDigiCollection = ecalEBunpacker:eeDigis
 }
