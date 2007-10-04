@@ -1,10 +1,10 @@
 module ecalEndcapIntegrityTask = EEIntegrityTask{
   untracked bool enableCleanup = true
-  InputTag EBDetIdCollection0 = ecalEBunpacker:EcalIntegrityDCCSizeErrors
-  InputTag EBDetIdCollection1 = ecalEBunpacker:EcalIntegrityGainErrors
-  InputTag EBDetIdCollection2 = ecalEBunpacker:EcalIntegrityChIdErrors
-  InputTag EBDetIdCollection3 = ecalEBunpacker:EcalIntegrityGainSwitchErrors
-  InputTag EBDetIdCollection4 = ecalEBunpacker:EcalIntegrityGainSwitchStayErrors
+  InputTag EEDetIdCollection0 = ecalEBunpacker:EcalIntegrityDCCSizeErrors
+  InputTag EEDetIdCollection1 = ecalEBunpacker:EcalIntegrityGainErrors
+  InputTag EEDetIdCollection2 = ecalEBunpacker:EcalIntegrityChIdErrors
+  InputTag EEDetIdCollection3 = ecalEBunpacker:EcalIntegrityGainSwitchErrors
+  InputTag EEDetIdCollection4 = ecalEBunpacker:EcalIntegrityGainSwitchStayErrors
   InputTag EcalTrigTowerDetIdCollection1 = ecalEBunpacker:EcalIntegrityTTIdErrors
   InputTag EcalTrigTowerDetIdCollection2 = ecalEBunpacker:EcalIntegrityBlockSizeErrors
   InputTag EcalElectronicsIdCollection1 = ecalEBunpacker:EcalIntegrityMemTtIdErrors
