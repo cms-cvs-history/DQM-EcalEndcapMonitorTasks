@@ -1,5 +1,6 @@
 module ecalEndcapClusterTask = EEClusterTask{
   untracked bool enableCleanup = true
-  InputTag islandEndcapBasicClusterCollection = islandBasicClusters:islandEndcapBasicClusters
-  InputTag islandEndcapSuperClusterCollection = islandSuperClusters:islandEndcapSuperClusters
+  InputTag BasicClusterCollection = islandBasicClusters:islandEndcapBasicClusters
+  InputTag SuperClusterCollection = islandSuperClusters:islandEndcapSuperClusters
+  InputTag ClusterShapeAssociation = islandBasicClusters:islandEndcapShapeAssoc
 }
