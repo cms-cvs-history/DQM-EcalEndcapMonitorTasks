@@ -1,6 +1,6 @@
 module ecalEndcapTriggerTowerTask = EETriggerTowerTask{
     untracked bool enableCleanup = true
-    InputTag EcalTrigPrimDigiCollectionReal = ecalEBunpacker
+    InputTag EcalTrigPrimDigiCollectionReal = ecalEBunpacker:EETT
     InputTag EcalTrigPrimDigiCollectionEmul = ecalTriggerPrimitiveDigis
     untracked string OutputRootFile = ""
 }
