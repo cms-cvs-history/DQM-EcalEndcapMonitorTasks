@@ -1,0 +1,19 @@
+
+replace ecalEndcapOccupancyTask.enableCleanup = true
+replace ecalEndcapIntegrityTask.enableCleanup = true
+
+replace ecalEndcapCosmicTask.enableCleanup = true
+replace ecalEndcapLaserTask.enableCleanup = true
+replace ecalEndcapLedTask.enableCleanup = true
+replace ecalEndcapPedestalOnlineTask.enableCleanup = true
+replace ecalEndcapPedestalTask.enableCleanup = true
+replace ecalEndcapTestPulseTask.enableCleanup = true
+
+replace ecalEndcapTriggerTowerTask.enableCleanup = true
+replace ecalEndcapTimingTask.enableCleanup = true
+
+replace ecalEndcapBeamHodoTask.enableCleanup = true
+replace ecalEndcapBeamCaloTask.enableCleanup = true
+
+replace ecalEndcapClusterTask.enableCleanup = true
+
