@@ -2,6 +2,8 @@
 include "DQM/EcalEndcapMonitorTasks/data/EEOccupancyTask.cfi"
 include "DQM/EcalEndcapMonitorTasks/data/EEIntegrityTask.cfi"
 
+include "DQM/EcalEndcapMonitorTasks/data/EEStatusFlagsTask.cfi"
+
 include "DQM/EcalEndcapMonitorTasks/data/EECosmicTask.cfi"
 include "DQM/EcalEndcapMonitorTasks/data/EELaserTask.cfi"
 include "DQM/EcalEndcapMonitorTasks/data/EELedTask.cfi"
@@ -19,6 +21,7 @@ include "DQM/EcalEndcapMonitorTasks/data/EEClusterTask.cfi"
 
 sequence ecalEndcapDefaultTasksSequence = { ecalEndcapOccupancyTask,
                                             ecalEndcapIntegrityTask,
+                                            ecalEndcapStatusFlagsTask,
                                             ecalEndcapLaserTask,
                                             ecalEndcapLedTask,
                                             ecalEndcapPedestalOnlineTask,

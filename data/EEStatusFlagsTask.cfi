@@ -1,0 +1,4 @@
+module ecalEndcapStatusFlagsTask = EEStatusFlagsTask{
+  untracked bool enableCleanup = true
+  InputTag EcalRawDataCollection = ecalEBunpacker:
+}

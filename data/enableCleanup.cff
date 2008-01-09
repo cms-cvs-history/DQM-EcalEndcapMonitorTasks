@@ -2,6 +2,8 @@
 replace ecalEndcapOccupancyTask.enableCleanup = true
 replace ecalEndcapIntegrityTask.enableCleanup = true
 
+replace ecalEndcapStatusFlagsTask.enableCleanup = true
+
 replace ecalEndcapCosmicTask.enableCleanup = true
 replace ecalEndcapLaserTask.enableCleanup = true
 replace ecalEndcapLedTask.enableCleanup = true
