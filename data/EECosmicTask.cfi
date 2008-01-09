@@ -3,6 +3,4 @@ module ecalEndcapCosmicTask = EECosmicTask{
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EcalUncalibRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEE
   InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEE
-  double MinJitter = -2
-  double MaxJitter = 1.5
 }
