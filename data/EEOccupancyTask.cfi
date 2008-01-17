@@ -2,4 +2,6 @@ module ecalEndcapOccupancyTask = EEOccupancyTask{
   untracked bool enableCleanup = true
   InputTag EEDigiCollection = ecalEBunpacker:eeDigis
   InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
+  InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEE
+  InputTag EcalTrigPrimDigiCollection = ecalEBunpacker:EETT
 }
