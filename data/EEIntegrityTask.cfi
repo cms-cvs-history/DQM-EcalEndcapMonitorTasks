@@ -4,7 +4,6 @@ module ecalEndcapIntegrityTask = EEIntegrityTask{
   InputTag EEDetIdCollection1 = ecalEBunpacker:EcalIntegrityGainErrors
   InputTag EEDetIdCollection2 = ecalEBunpacker:EcalIntegrityChIdErrors
   InputTag EEDetIdCollection3 = ecalEBunpacker:EcalIntegrityGainSwitchErrors
-  InputTag EEDetIdCollection4 = ecalEBunpacker:EcalIntegrityGainSwitchStayErrors
   InputTag EcalElectronicsIdCollection1 = ecalEBunpacker:EcalIntegrityTTIdErrors
   InputTag EcalElectronicsIdCollection2 = ecalEBunpacker:EcalIntegrityBlockSizeErrors
   InputTag EcalElectronicsIdCollection3 = ecalEBunpacker:EcalIntegrityMemTtIdErrors
