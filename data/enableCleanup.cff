@@ -1,3 +1,16 @@
+include "DQM/EcalEndcapMonitorTasks/data/EEBeamCaloTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEBeamHodoTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEClusterTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EECosmicTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEIntegrityTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EELaserTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EELedTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEOccupancyTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEPedestalOnlineTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EEPedestalTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EETestPulseTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EETimingTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EETriggerTowerTask.cfi"
 
 replace ecalEndcapOccupancyTask.enableCleanup = true
 replace ecalEndcapIntegrityTask.enableCleanup = true
