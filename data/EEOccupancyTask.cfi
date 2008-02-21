@@ -3,6 +3,6 @@ module ecalEndcapOccupancyTask = EEOccupancyTask{
   InputTag EEDigiCollection = ecalEBunpacker:eeDigis
   InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
   InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEE
-  InputTag EcalTrigPrimDigiCollection = ecalEBunpacker:EETT
+  InputTag EcalTrigPrimDigiCollection = ecalEBunpacker:EcalTriggerPrimitives
   InputTag EcalRawDataCollection = ecalEBunpacker:
 }
