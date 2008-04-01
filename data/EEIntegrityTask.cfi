@@ -7,7 +7,7 @@ module ecalEndcapIntegrityTask = EEIntegrityTask{
   InputTag EcalElectronicsIdCollection1 = ecalEBunpacker:EcalIntegrityTTIdErrors
   InputTag EcalElectronicsIdCollection2 = ecalEBunpacker:EcalIntegrityBlockSizeErrors
   InputTag EcalElectronicsIdCollection3 = ecalEBunpacker:EcalIntegrityMemTtIdErrors
-  InputTag EcalElectronicsIdCollection4 = ecalEBunpacker:EcalIntegrityMemBlockSize
+  InputTag EcalElectronicsIdCollection4 = ecalEBunpacker:EcalIntegrityMemBlockSizeErrors
   InputTag EcalElectronicsIdCollection5 = ecalEBunpacker:EcalIntegrityMemChIdErrors
   InputTag EcalElectronicsIdCollection6 = ecalEBunpacker:EcalIntegrityMemGainErrors
 }
