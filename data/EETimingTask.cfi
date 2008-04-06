@@ -1,4 +1,5 @@
 module ecalEndcapTimingTask = EETimingTask{
   untracked bool enableCleanup = true
+  InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEE
 }
