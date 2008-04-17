@@ -1,6 +1,6 @@
 module ecalEndcapBeamCaloTask = EEBeamCaloTask{
   untracked string prefixME = "EcalEndcap"  
-  untracked bool enableCleanup = true
+  untracked bool enableCleanup = false
   InputTag EcalTBEventHeader = ecalEBunpacker:
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EBDigiCollection = ecalEBunpacker:ebDigis

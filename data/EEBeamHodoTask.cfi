@@ -1,5 +1,5 @@
 module ecalEndcapBeamHodoTask = EEBeamHodoTask{
-  untracked bool enableCleanup = true
+  untracked bool enableCleanup = false
   InputTag EcalTBEventHeader = ecalEBunpacker:
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EcalUncalibratedRecHitCollection = ecalUncalibHit:EcalUncalibRecHitsEB

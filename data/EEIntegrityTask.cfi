@@ -1,6 +1,6 @@
 module ecalEndcapIntegrityTask = EEIntegrityTask{
   untracked string prefixME = "EcalEndcap"  
-  untracked bool enableCleanup = true
+  untracked bool enableCleanup = false
   InputTag EEDetIdCollection0 = ecalEBunpacker:EcalIntegrityDCCSizeErrors
   InputTag EEDetIdCollection1 = ecalEBunpacker:EcalIntegrityGainErrors
   InputTag EEDetIdCollection2 = ecalEBunpacker:EcalIntegrityChIdErrors
