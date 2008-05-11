@@ -1,5 +1,6 @@
 module ecalEndcapPedestalOnlineTask = EEPedestalOnlineTask{
   untracked string prefixME = "EcalEndcap"  
   untracked bool enableCleanup = false
+  untracked bool mergeRuns = false
   InputTag EEDigiCollection = ecalEBunpacker:eeDigis
 }

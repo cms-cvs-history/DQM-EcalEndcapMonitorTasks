@@ -1,6 +1,7 @@
 module ecalEndcapClusterTask = EEClusterTask{
   untracked string prefixME = "EcalEndcap"
   untracked bool enableCleanup = false
+  untracked bool mergeRuns = false
   InputTag BasicClusterCollection = islandBasicClusters:islandEndcapBasicClusters
   InputTag SuperClusterCollection = islandSuperClusters:islandEndcapSuperClusters
   InputTag ClusterShapeAssociation = islandBasicClusters:islandEndcapShapeAssoc

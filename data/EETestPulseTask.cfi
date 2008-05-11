@@ -1,6 +1,7 @@
 module ecalEndcapTestPulseTask = EETestPulseTask{
   untracked string prefixME = "EcalEndcap"  
   untracked bool enableCleanup = false
+  untracked bool mergeRuns = false
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag EEDigiCollection = ecalEBunpacker:eeDigis
   InputTag EcalPnDiodeDigiCollection = ecalEBunpacker:
