@@ -19,6 +19,8 @@ include "DQM/EcalEndcapMonitorTasks/data/EEBeamCaloTask.cfi"
 
 include "DQM/EcalEndcapMonitorTasks/data/EEClusterTask.cfi"
 
+include "DQM/EcalEndcapMonitorTasks/data/EESelectiveReadoutTask.cfi"
+
 sequence ecalEndcapDefaultTasksSequence = { ecalEndcapOccupancyTask,
                                             ecalEndcapIntegrityTask,
                                             ecalEndcapStatusFlagsTask,

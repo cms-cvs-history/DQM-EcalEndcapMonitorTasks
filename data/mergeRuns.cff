@@ -12,6 +12,7 @@ include "DQM/EcalEndcapMonitorTasks/data/EEStatusFlagsTask.cfi"
 include "DQM/EcalEndcapMonitorTasks/data/EETestPulseTask.cfi"
 include "DQM/EcalEndcapMonitorTasks/data/EETimingTask.cfi"
 include "DQM/EcalEndcapMonitorTasks/data/EETriggerTowerTask.cfi"
+include "DQM/EcalEndcapMonitorTasks/data/EESelectiveReadoutTask.cfi"
 
 replace ecalEndcapOccupancyTask.mergeRuns = true
 replace ecalEndcapIntegrityTask.mergeRuns = true
@@ -33,3 +34,4 @@ replace ecalEndcapBeamCaloTask.mergeRuns = true
 
 replace ecalEndcapClusterTask.mergeRuns = true
 
+replace ecalEndcapSelectiveReadoutTask.mergeRuns = true

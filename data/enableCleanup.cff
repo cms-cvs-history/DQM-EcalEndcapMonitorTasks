@@ -12,6 +12,7 @@ include "DQM/EcalEndcapMonitorTasks/data/EEStatusFlagsTask.cfi"
 include "DQM/EcalEndcapMonitorTasks/data/EETestPulseTask.cfi"
 include "DQM/EcalEndcapMonitorTasks/data/EETimingTask.cfi"
 include "DQM/EcalEndcapMonitorTasks/data/EETriggerTowerTask.cfi"
+include "DQM/EcalBarrelMonitorTasks/data/EBSelectiveReadoutTask.cfi"
 
 replace ecalEndcapOccupancyTask.enableCleanup = true
 replace ecalEndcapIntegrityTask.enableCleanup = true
@@ -33,3 +34,4 @@ replace ecalEndcapBeamCaloTask.enableCleanup = true
 
 replace ecalEndcapClusterTask.enableCleanup = true
 
+replace ecalEndcapSelectiveReadoutTask.enableCleanup = true
