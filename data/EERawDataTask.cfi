@@ -1,0 +1,10 @@
+module ecalEndcapRawDataTask = EERawDataTask {
+
+    untracked string prefixME = "EcalEndcap"
+    untracked bool enableCleanup = false
+    untracked bool mergeRuns = false
+
+    InputTag FEDRawDataCollection = source
+    InputTag EcalRawDataCollection = ecalEBunpacker:
+
+}
