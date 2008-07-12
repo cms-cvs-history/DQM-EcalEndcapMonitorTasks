@@ -1,5 +1,4 @@
 module ecalEndcapSelectiveReadoutTask = EESelectiveReadoutTask {
-
     untracked string prefixME = "EcalEndcap"
     untracked bool enableCleanup = false
     untracked bool mergeRuns = false
@@ -8,5 +7,4 @@ module ecalEndcapSelectiveReadoutTask = EESelectiveReadoutTask {
     InputTag EESRFlagCollection = ecalEBunpacker
     InputTag EcalTrigPrimDigiCollection = ecalEBunpacker:EcalTriggerPrimitives
     InputTag EcalFEDRawCollection = source
-
 }
