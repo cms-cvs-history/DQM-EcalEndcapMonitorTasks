@@ -5,5 +5,5 @@ module ecalEndcapClusterTask = EEClusterTask{
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag BasicClusterCollection = multi5x5BasicClusters:multi5x5EndcapBasicClusters
   InputTag SuperClusterCollection = correctedMulti5x5SuperClusters
-  InputTag reducedEndcapRecHitCollection = ecalRecHit:EcalRecHitsEE
+  InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEE
 }
