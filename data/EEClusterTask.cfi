@@ -3,7 +3,7 @@ module ecalEndcapClusterTask = EEClusterTask{
   untracked bool enableCleanup = false
   untracked bool mergeRuns = false
   InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag BasicClusterCollection = islandBasicClusters:islandEndcapBasicClusters
-  InputTag SuperClusterCollection = islandSuperClusters:islandEndcapSuperClusters
-  InputTag ClusterShapeAssociation = islandBasicClusters:islandEndcapShapeAssoc
+  InputTag BasicClusterCollection = multi5x5BasicClusters:multi5x5EndcapBasicClusters
+  InputTag SuperClusterCollection = correctedMulti5x5SuperClusters
+  InputTag reducedEndcapRecHitCollection = ecalRecHit:EcalRecHitsEE
 }
