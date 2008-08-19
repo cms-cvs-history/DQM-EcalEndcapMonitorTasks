@@ -4,6 +4,6 @@ module ecalEndcapClusterTask = EEClusterTask{
   untracked bool mergeRuns = false
   InputTag EcalRawDataCollection = ecalEBunpacker:
   InputTag BasicClusterCollection = multi5x5BasicClusters:multi5x5EndcapBasicClusters
-  InputTag SuperClusterCollection = correctedMulti5x5SuperClusters
+  InputTag SuperClusterCollection = correctedMulti5x5SuperClusters:
   InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEE
 }
