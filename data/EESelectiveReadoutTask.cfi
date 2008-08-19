@@ -3,8 +3,8 @@ module ecalEndcapSelectiveReadoutTask = EESelectiveReadoutTask {
     untracked bool enableCleanup = false
     untracked bool mergeRuns = false
     InputTag EEDigiCollection = ecalEBunpacker:eeDigis
-    InputTag EEUsuppressedDigiCollection = ecalUnsuppressedDigis
-    InputTag EESRFlagCollection = ecalEBunpacker
+    InputTag EEUsuppressedDigiCollection = ecalUnsuppressedDigis:
+    InputTag EESRFlagCollection = ecalEBunpacker:
     InputTag EcalTrigPrimDigiCollection = ecalEBunpacker:EcalTriggerPrimitives
     InputTag EcalFEDRawCollection = source
 }

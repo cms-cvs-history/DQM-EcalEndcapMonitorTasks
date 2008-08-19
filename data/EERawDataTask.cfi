@@ -4,5 +4,5 @@ module ecalEndcapRawDataTask = EERawDataTask {
     untracked bool mergeRuns = false
     InputTag FEDRawDataCollection = source
     InputTag EcalRawDataCollection = ecalEBunpacker:
-    InputTag GTEvmSource = l1GtEvmUnpack
+    InputTag GTEvmSource = l1GtEvmUnpack:
 }
