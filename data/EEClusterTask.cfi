@@ -1,9 +1,0 @@
-module ecalEndcapClusterTask = EEClusterTask{
-  untracked string prefixME = "EcalEndcap"
-  untracked bool enableCleanup = false
-  untracked bool mergeRuns = false
-  InputTag EcalRawDataCollection = ecalEBunpacker:
-  InputTag BasicClusterCollection = multi5x5BasicClusters:multi5x5EndcapBasicClusters
-  InputTag SuperClusterCollection = multi5x5SuperClusters:multi5x5EndcapSuperClusters
-  InputTag EcalRecHitCollection = ecalRecHit:EcalRecHitsEE
-}

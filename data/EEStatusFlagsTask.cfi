@@ -1,6 +1,0 @@
-module ecalEndcapStatusFlagsTask = EEStatusFlagsTask{
-  untracked string prefixME = "EcalEndcap"  
-  untracked bool enableCleanup = false
-  untracked bool mergeRuns = false
-  InputTag EcalRawDataCollection = ecalEBunpacker:
-}
