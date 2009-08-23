@@ -1,8 +1,8 @@
 /*
  * \file EEClusterTask.cc
  *
- * $Date: 2009/03/30 18:28:01 $
- * $Revision: 1.64 $
+ * $Date: 2009/02/05 15:09:07 $
+ * $Revision: 1.58 $
  * \author G. Della Ricca
  * \author E. Di Marco
  *
@@ -22,7 +22,6 @@
 
 #include "DataFormats/EcalRawData/interface/EcalRawDataCollections.h"
 #include "DataFormats/EgammaReco/interface/BasicCluster.h"
-#include "DataFormats/EgammaReco/interface/BasicClusterFwd.h"
 #include "DataFormats/EgammaReco/interface/SuperCluster.h"
 #include "DataFormats/EgammaReco/interface/SuperClusterFwd.h"
 #include "FWCore/Framework/interface/ESHandle.h"
@@ -793,31 +792,19 @@ void EEClusterTask::analyze(const Event& e, const EventSetup& c){
         c.get<CaloTopologyRecord>().get(pTopology);
         if ( pTopology.isValid() ) {
           const CaloTopology *topology = pTopology.product();
-
-          // <= CMSSW_3_0_X
-          //BasicClusterRef theSeed = sCluster->seed();
-          // >= CMSSW_3_1_X
-          CaloClusterPtr theSeed = sCluster->seed();
+          
+          BasicClusterRef theSeed = sCluster->seed();
 
           // Find the seed rec hit
-          // <= CMSSW_3_0_X
-          // std::vector<DetId> sIds = sCluster->getHitsByDetId();
-          // >= CMSSW_3_1_X
-          std::vector< std::pair<DetId,float> > sIds = sCluster->hitsAndFractions();
+          std::vector<DetId> sIds = sCluster->getHitsByDetId();
 
           float eMax, e2nd;
           EcalRecHitCollection::const_iterator seedItr = eeRecHits->begin();
           EcalRecHitCollection::const_iterator secondItr = eeRecHits->begin();
 
-          // <= CMSSW_3_0_X
-          // for(std::vector<DetId>::const_iterator idItr = sIds.begin(); idItr != sIds.end(); ++idItr) {
-          // if(idItr->det() != DetId::Ecal) { continue; }
-          // EcalRecHitCollection::const_iterator hitItr = eeRecHits->find((*idItr));
-          // >= CMSSW_3_1_X
-          for(std::vector< std::pair<DetId,float> >::const_iterator idItr = sIds.begin(); idItr != sIds.end(); ++idItr) {
-            DetId id = idItr->first;
-            if(id.det() != DetId::Ecal) { continue; }
-            EcalRecHitCollection::const_iterator hitItr = eeRecHits->find(id);
+          for(std::vector<DetId>::const_iterator idItr = sIds.begin(); idItr != sIds.end(); ++idItr) {
+            if(idItr->det() != DetId::Ecal) { continue; }
+            EcalRecHitCollection::const_iterator hitItr = eeRecHits->find((*idItr));
             if(hitItr == eeRecHits->end()) { continue; }
             if(hitItr->energy() > secondItr->energy()) { secondItr = hitItr; }
             if(hitItr->energy() > seedItr->energy()) { std::swap(seedItr,secondItr); }
@@ -856,12 +843,12 @@ void EEClusterTask::analyze(const Event& e, const EventSetup& c){
           edm::ESHandle<EcalADCToGeVConstant> pAgc;
           c.get<EcalADCToGeVConstantRcd>().get(pAgc);
           const EcalADCToGeVConstant* agc = pAgc.product();
-
+          
           if(pAgc.isValid()) {
             if(seedItr->energy() / agc->getEEValue() > 16) {
-
+              
               float time = seedItr->time() + 5.0;
-
+              
               meSCSeedTimingSummary_->Fill( time );
               meSCSeedTiming_[ism-1]->Fill( time );
               meSCSeedTimingMap_[eeSide]->Fill(xeex, xeey, time);
