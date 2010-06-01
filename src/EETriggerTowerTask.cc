@@ -1,8 +1,8 @@
 /*
  * \file EETriggerTowerTask.cc
  *
- * $Date: 2010/03/29 12:18:39 $
- * $Revision: 1.72 $
+ * $Date: 2010/05/02 15:26:51 $
+ * $Revision: 1.73 $
  * \author G. Della Ricca
  * \author E. Di Marco
  *
@@ -21,7 +21,6 @@
 #include "DQM/EcalCommon/interface/Numbers.h"
 
 #include "DQM/EcalEndcapMonitorTasks/interface/EETriggerTowerTask.h"
-#include "FWCore/Common/interface/TriggerNames.h"
 
 #include <iostream>
 
@@ -446,7 +445,8 @@ EETriggerTowerTask::processDigis( const edm::Event& e, const edm::Handle<EcalTri
     int ntrigs = hltResults->size();
     if ( ntrigs!=0 ) {
 
-      const edm::TriggerNames & triggerNames = e.triggerNames(*hltResults);
+      edm::TriggerNames triggerNames;
+      triggerNames.init( *hltResults );
 
       for ( int itrig = 0; itrig != ntrigs; ++itrig ) {
         std::string trigName = triggerNames.triggerName(itrig);
