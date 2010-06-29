@@ -1,13 +1,8 @@
 /*
  * \file EERawDataTask.cc
  *
-<<<<<<< EERawDataTask.cc
- * $Date: 2010/06/29 15:53:30 $
- * $Revision: 1.27.2.1 $
-=======
- * $Date: 2010/06/29 18:44:22 $
- * $Revision: 1.30 $
->>>>>>> 1.30
+ * $Date: 2010/06/29 18:56:55 $
+ * $Revision: 1.27.2.2 $
  * \author E. Di Marco
  *
 */
@@ -547,19 +542,12 @@ void EERawDataTask::analyze(const edm::Event& e, const edm::EventSetup& c){
         if(feBxs[fe] != ECALDCC_BunchCrossing && feBxs[fe] != -1) meEEBunchCrossingFEErrors_->Fill( xism, 1/(float)feBxs.size());
       }
 
-<<<<<<< EERawDataTask.cc
-      // vector of TCC channels has 4 elements for both EB and EE. 
-      // EB uses [0], EE uses [0-3].
-      for(int tcc=0; tcc<4; tcc++) {
-        if(tccBx[tcc] != ECALDCC_BunchCrossing && tccBx[tcc] != -1) meEEBunchCrossingTCCErrors_->Fill( xism, 1/(float)tccBx.size());
-=======
       // vector of TCC channels has 4 elements for both EB and EE. 
       // EB uses [0], EE uses [0-3].
       if(tccBx.size() == MAX_TCC_SIZE) {
         for(int tcc=0; tcc<MAX_TCC_SIZE; tcc++) {
           if(tccBx[tcc] != ECALDCC_BunchCrossing && tccBx[tcc] != -1) meEEBunchCrossingTCCErrors_->Fill( xism, 1/(float)tccBx.size());
         }
->>>>>>> 1.30
       }
 
       if(srpBx != ECALDCC_BunchCrossing && srpBx != -1) meEEBunchCrossingSRPErrors_->Fill( xism );
@@ -575,17 +563,12 @@ void EERawDataTask::analyze(const edm::Event& e, const edm::EventSetup& c){
         if(feLv1[fe] != ECALDCC_L1A_12bit - 1 && feLv1[fe] != -1) meEEL1AFEErrors_->Fill( xism, 1/(float)feLv1.size());
       }
 
-<<<<<<< EERawDataTask.cc
-      for(int tcc=0; tcc<4; tcc++) {
-        if(tccLv1[tcc] != ECALDCC_L1A_12bit && tccLv1[tcc] != -1) meEEL1ATCCErrors_->Fill( xism, 1/(float)tccLv1.size());
-=======
       // vector of TCC channels has 4 elements for both EB and EE. 
       // EB uses [0], EE uses [0-3].
       if(tccLv1.size() == MAX_TCC_SIZE) {
         for(int tcc=0; tcc<MAX_TCC_SIZE; tcc++) {
           if(tccLv1[tcc] != ECALDCC_L1A_12bit && tccLv1[tcc] != -1) meEEL1ATCCErrors_->Fill( xism, 1/(float)tccLv1.size());
         }
->>>>>>> 1.30
       }
 
       if(srpLv1 != ECALDCC_L1A_12bit && srpLv1 != -1) meEEL1ASRPErrors_->Fill( xism );
