@@ -1,8 +1,13 @@
 /*
  * \file EERawDataTask.cc
  *
- * $Date: 2010/06/29 18:56:55 $
- * $Revision: 1.27.2.2 $
+<<<<<<< EERawDataTask.cc
+ * $Date: 2010/06/29 19:04:34 $
+ * $Revision: 1.27.2.3 $
+=======
+ * $Date: 2010/06/30 15:08:12 $
+ * $Revision: 1.31 $
+>>>>>>> 1.31
  * \author E. Di Marco
  *
 */
@@ -539,6 +544,7 @@ void EERawDataTask::analyze(const edm::Event& e, const edm::EventSetup& c){
       const short srpBx = dcchItr->getSRPBx();
 
       for(int fe=0; fe<(int)feBxs.size(); fe++) {
+        if(ism==1 && fe==31) continue; // mask known bad tower
         if(feBxs[fe] != ECALDCC_BunchCrossing && feBxs[fe] != -1) meEEBunchCrossingFEErrors_->Fill( xism, 1/(float)feBxs.size());
       }
 
@@ -560,6 +566,7 @@ void EERawDataTask::analyze(const edm::Event& e, const edm::EventSetup& c){
       int ECALDCC_L1A_12bit = ECALDCC_L1A & 0xfff;
 
       for(int fe=0; fe<(int)feLv1.size(); fe++) {
+        if(ism==1 && fe==31) continue; // mask known bad tower
         if(feLv1[fe] != ECALDCC_L1A_12bit - 1 && feLv1[fe] != -1) meEEL1AFEErrors_->Fill( xism, 1/(float)feLv1.size());
       }
 
