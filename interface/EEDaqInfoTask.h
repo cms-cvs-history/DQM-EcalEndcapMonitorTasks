@@ -32,12 +32,6 @@ void beginLuminosityBlock(const edm::LuminosityBlock& lumiBlock, const  edm::Eve
 /// EndLuminosityBlock
 void endLuminosityBlock(const edm::LuminosityBlock&  lumiBlock, const  edm::EventSetup& iSetup);
 
-/// BeginRun
-void beginRun(const edm::Run & r, const edm::EventSetup & c);
-
-/// EndRun
-void endRun(const edm::Run & r, const edm::EventSetup & c);
-
 /// Reset
 void reset(void);
 
@@ -45,8 +39,6 @@ void reset(void);
 void cleanup(void);
   
 private:
-
-void fillMonitorElements(int ready[40][20]);
   
 DQMStore* dqmStore_;
 
@@ -60,8 +52,10 @@ MonitorElement* meEEDaqFraction_;
 MonitorElement* meEEDaqActive_[18];
 MonitorElement* meEEDaqActiveMap_;
 
-int readyRun[40][20];
-int readyLumi[40][20];
+int EEMinusFedRangeMin_;
+int EEMinusFedRangeMax_;
+int EEPlusFedRangeMin_;
+int EEPlusFedRangeMax_;
 
 };
 
