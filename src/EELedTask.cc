@@ -1,8 +1,8 @@
 /*
  * \file EELedTask.cc
  *
- * $Date: 2010/06/14 15:00:40 $
- * $Revision: 1.63 $
+ * $Date: 2010/07/30 05:42:47 $
+ * $Revision: 1.64 $
  * \author G. Della Ricca
  *
 */
@@ -50,7 +50,7 @@ EELedTask::EELedTask(const edm::ParameterSet& ps){
   // vector of enabled wavelengths (Default to all 2)
   ledWavelengths_.reserve(2);
   for ( unsigned int i = 1; i <= 2; i++ ) ledWavelengths_.push_back(i);
-  ledWavelengths_ = ps.getUntrackedParameter<vector<int> >("ledWavelengths", ledWavelengths_);
+  ledWavelengths_ = ps.getUntrackedParameter<std::vector<int> >("ledWavelengths", ledWavelengths_);
 
   for (int i = 0; i < 18; i++) {
     meShapeMapL1_[i] = 0;
