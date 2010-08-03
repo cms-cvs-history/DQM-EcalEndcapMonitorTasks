@@ -16,6 +16,7 @@
 <use   name="RecoLocalCalo/EcalRecAlgos"/>
 <use   name="CondFormats/DataRecord"/>
 <use   name="CondFormats/EcalObjects"/>
+<use   name="CondFormats/RunInfo"/>
 <use   name="rootphysics"/>
 <export>
   <lib   name="1"/>
