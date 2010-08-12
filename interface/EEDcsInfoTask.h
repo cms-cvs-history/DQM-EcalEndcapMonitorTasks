@@ -1,15 +1,6 @@
 #ifndef EEDcsInfoTask_h
 #define EEDcsInfoTask_h
 
-/*
- * \file EEDcsInfoTask.h
- *
- * $Date: 2010/08/08 08:56:00 $
- * $Revision: 1.9 $
- * \author E. Di Marco
- *
-*/
-
 #include "FWCore/Framework/interface/EDAnalyzer.h"
 #include "FWCore/Framework/interface/Event.h"
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
@@ -64,6 +55,8 @@ std::string prefixME_;
 bool enableCleanup_;
 
 bool mergeRuns_;
+
+edm::InputTag dcsStatusCollection_; 
 
 MonitorElement* meEEDcsFraction_;
 MonitorElement* meEEDcsActive_[18];
