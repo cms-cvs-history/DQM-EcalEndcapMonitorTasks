@@ -1,8 +1,8 @@
 /*
  * \file EEPedestalOnlineTask.cc
  *
- * $Date: 2010/06/14 15:00:40 $
- * $Revision: 1.32 $
+ * $Date: 2010/08/12 18:25:32 $
+ * $Revision: 1.32.4.1 $
  * \author G. Della Ricca
  *
 */
@@ -21,9 +21,9 @@
 #include "DataFormats/EcalDigi/interface/EEDataFrame.h"
 #include "DataFormats/EcalDigi/interface/EcalDigiCollections.h"
 
-#include <DQM/EcalCommon/interface/Numbers.h>
+#include "DQM/EcalCommon/interface/Numbers.h"
 
-#include <DQM/EcalEndcapMonitorTasks/interface/EEPedestalOnlineTask.h>
+#include "DQM/EcalEndcapMonitorTasks/interface/EEPedestalOnlineTask.h"
 
 EEPedestalOnlineTask::EEPedestalOnlineTask(const edm::ParameterSet& ps){
 

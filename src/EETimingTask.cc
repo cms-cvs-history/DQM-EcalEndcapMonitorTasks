@@ -1,8 +1,8 @@
 /*
  * \file EETimingTask.cc
  *
- * $Date: 2010/06/29 15:53:30 $
- * $Revision: 1.61.2.1 $
+ * $Date: 2010/08/04 18:59:09 $
+ * $Revision: 1.61.2.2 $
  * \author G. Della Ricca
  *
 */
@@ -27,9 +27,9 @@
 #include "CondFormats/EcalObjects/interface/EcalChannelStatus.h"
 #include "CondFormats/DataRecord/interface/EcalChannelStatusRcd.h"
 
-#include <DQM/EcalCommon/interface/Numbers.h>
+#include "DQM/EcalCommon/interface/Numbers.h"
 
-#include <DQM/EcalEndcapMonitorTasks/interface/EETimingTask.h>
+#include "DQM/EcalEndcapMonitorTasks/interface/EETimingTask.h"
 
 EETimingTask::EETimingTask(const edm::ParameterSet& ps){
 
