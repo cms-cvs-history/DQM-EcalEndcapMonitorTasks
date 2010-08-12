@@ -4,8 +4,8 @@
 /*
  * \file EERawDataTask.h
  *
- * $Date: 2009/04/29 07:46:18 $
- * $Revision: 1.6 $
+ * $Date: 2010/08/06 17:35:41 $
+ * $Revision: 1.8 $
  * \author E. Di Marco
  *
 */
@@ -37,6 +37,12 @@ void beginJob(void);
 
 /// EndJob
 void endJob(void);
+
+/// BeginLuminosityBlock
+void beginLuminosityBlock(const edm::LuminosityBlock& lumiBlock, const  edm::EventSetup& iSetup);
+
+/// EndLuminosityBlock
+void endLuminosityBlock(const edm::LuminosityBlock&  lumiBlock, const  edm::EventSetup& iSetup);
 
 /// BeginRun
 void beginRun(const edm::Run & r, const edm::EventSetup & c);
@@ -84,6 +90,8 @@ MonitorElement* meEEL1ATCCErrors_;
 MonitorElement* meEEBunchCrossingTCCErrors_;
 MonitorElement* meEEL1ASRPErrors_;
 MonitorElement* meEEBunchCrossingSRPErrors_;
+
+MonitorElement* meEESynchronizationErrorsByLumi_;
 
 bool init_;
 
