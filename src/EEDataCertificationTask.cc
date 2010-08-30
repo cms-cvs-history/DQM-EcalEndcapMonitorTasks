@@ -206,7 +206,7 @@ void EEDataCertificationTask::endLuminosityBlock(const edm::LuminosityBlock&  lu
             xcert = 0.0;
           } else {
             // do not consider the white value of DAQ and DCS (problems with DB)
-            xcert = fabs(xvalDQM) * fabs(xvalDAQ) * fabs(xvalDCS);
+            xcert = std::abs(xvalDQM) * std::abs(xvalDAQ) * std::abs(xvalDCS);
           }
 
           if ( meEEDataCertificationSummaryMap_ ) meEEDataCertificationSummaryMap_->setBinContent( jx, jy, xcert );
@@ -294,7 +294,7 @@ void EEDataCertificationTask::endRun(const edm::Run& r, const edm::EventSetup& c
             xcert = 0.0;
           } else {
             // do not consider the white value of DAQ and DCS (problems with DB)
-            xcert = fabs(xvalDQM) * fabs(xvalDAQ) * fabs(xvalDCS);
+            xcert = std::abs(xvalDQM) * std::abs(xvalDAQ) * std::abs(xvalDCS);
           }
 
           if ( meEEDataCertificationSummaryMap_ ) meEEDataCertificationSummaryMap_->setBinContent( jx, jy, xcert );
