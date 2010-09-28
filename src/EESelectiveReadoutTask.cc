@@ -1,8 +1,8 @@
 /*
  * \file EESelectiveReadoutTask.cc
  *
- * $Date: 2010/08/12 20:09:11 $
- * $Revision: 1.48.2.1 $
+ * $Date: 2010/09/28 13:00:30 $
+ * $Revision: 1.55 $
  * \author P. Gras
  * \author E. Di Marco
  *
@@ -943,7 +943,6 @@ void EESelectiveReadoutTask::anaDigi(const EEDataFrame& frame, const EESrFlagCol
       eeRuActive_[iZ0][iX0/scEdge][iY0/scEdge] = true;
     }
 
-
     EESrFlagCollection::const_iterator srf = srFlagColl.find(readOutUnitOf(id));
 
     if(srf == srFlagColl.end()){
@@ -1023,15 +1022,18 @@ void EESelectiveReadoutTask::anaDigiInit(){
 
 }
 
-EcalScDetId
-EESelectiveReadoutTask::readOutUnitOf(const EEDetId& xtalId) const{
-  const int scEdge = 5;
-  return EcalScDetId((xtalId.ix()-1)/scEdge+1,
-                     (xtalId.iy()-1)/scEdge+1,
-                     xtalId.zside());
+const EcalScDetId
+EESelectiveReadoutTask::readOutUnitOf(const EEDetId& xtalId) const {
+  if (xtalId.ix() > 40 && xtalId.ix() < 61 &&
+      xtalId.iy() > 40 && xtalId.iy() < 61) {
+    // crystal belongs to an inner partial supercrystal
+    return Numbers::getEcalScDetId(xtalId);
+  } else {
+    return EcalScDetId((xtalId.ix()-1)/5+1, (xtalId.iy()-1)/5+1, xtalId.zside());
+  }
 }
 
-unsigned EESelectiveReadoutTask::dccNum(const DetId& xtalId) const{
+unsigned EESelectiveReadoutTask::dccNum(const DetId& xtalId) const {
   int j;
   int k;
 
@@ -1056,7 +1058,7 @@ unsigned EESelectiveReadoutTask::dccNum(const DetId& xtalId) const{
   return iDcc0+1;
 }
 
-unsigned EESelectiveReadoutTask::dccNumOfRU(const EcalScDetId& scId) const{
+unsigned EESelectiveReadoutTask::dccNumOfRU(const EcalScDetId& scId) const {
   int j;
   int k;
 
@@ -1222,37 +1224,46 @@ EESelectiveReadoutTask::configFirWeights(std::vector<double> weightsForZsFIR){
 }
 
 int EESelectiveReadoutTask::getCrystalCount(int iDcc, int iDccCh) {
-  if(iDcc<1 || iDcc>54) return 0;
-  else {
+  if(iDcc<1 || iDcc>54) {
+    // invalid DCC
+    return 0;
+  } else if (10 <= iDcc && iDcc <= 45) {
+    // EB
+    return 25;
+  } else {
+    // EE
     int iDccPhi;
-    if(iDcc < 10) iDccPhi = iDcc;
-    else iDccPhi = iDcc - 45;
+    if(iDcc < 10) {
+      iDccPhi = iDcc;
+    } else {
+      iDccPhi = iDcc - 45;
+    }
     switch(iDccPhi*100+iDccCh){
-    case 110:
-    case 232:
-    case 312:
-    case 412:
-    case 532:
-    case 610:
-    case 830:
-    case 806:
-      //inner partials at 12, 3, and 9 o'clock
-      return 20;
-    case 134:
-    case 634:
-    case 827:
-    case 803:
+      case 110:
+      case 232:
+      case 312:
+      case 412:
+      case 532:
+      case 610:
+      case 830:
+      case 806:
+        //inner partials at 12, 3, and 9 o'clock
+        return 20;
+      case 134:
+      case 634:
+      case 827:
+      case 803:
       return 10;
-    case 330:
-    case 430:
-      return 20;
-    case 203:
-    case 503:
-    case 721:
-    case 921:
-      return 21;
-    default:
-      return 25;
+      case 330:
+      case 430:
+        return 20;
+      case 203:
+      case 503:
+      case 721:
+      case 921:
+        return 21;
+      default:
+        return 25;
     }
   }
 }
