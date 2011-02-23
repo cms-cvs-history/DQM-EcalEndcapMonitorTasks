@@ -1,8 +1,8 @@
 /*
  * \file EETimingTask.cc
  *
- * $Date: 2010/08/11 14:57:35 $
- * $Revision: 1.70 $
+ * $Date: 2010/08/30 13:14:09 $
+ * $Revision: 1.71 $
  * \author G. Della Ricca
  *
 */
@@ -206,8 +206,8 @@ void EETimingTask::setup(void){
 
     sprintf(histo, "EETMT timing EE+ vs EE-");
     meTimeDelta2D_ = dqmStore_->book2D(histo, histo, 50, -50., 50., 50, -50., 50.);
-    meTimeDelta2D_->setAxisTitle("EE- average time (ns)", 1);
-    meTimeDelta2D_->setAxisTitle("EE+ average time (ns)", 2);
+    meTimeDelta2D_->setAxisTitle("EE+ average time (ns)", 1);
+    meTimeDelta2D_->setAxisTitle("EE- average time (ns)", 2);
 
   }
 
