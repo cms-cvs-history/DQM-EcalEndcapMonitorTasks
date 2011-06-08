@@ -1,8 +1,8 @@
 /*
  * \file EETriggerTowerTask.cc
  *
- * $Date: 2010/06/01 07:08:39 $
- * $Revision: 1.73.2.1 $
+ * $Date: 2010/06/29 15:53:30 $
+ * $Revision: 1.73.2.2 $
  * \author G. Della Ricca
  * \author E. Di Marco
  *
@@ -205,10 +205,10 @@ void EETriggerTowerTask::setup( const char* nameext,
     for ( int i=0; i<=11; i++ ) xbins[i] = i-1;  // begin of orbit
     // abort gap in presence of calibration: [3381-3500]
     // abort gap in absence of calibration: [3444-3500]
-    // uing the wider abort gap always, start finer binning at bx=3371
+    // using the wider abort gap always, start finer binning at bx=3371
     for ( int i=12; i<=22; i++) xbins[i] = 3371+i-12;
     // use 29 bins for the abort gap
-    for ( int i=23; i<=51; i++) xbins[i] = 3382+(i-23)*6;
+    for ( int i=23; i<=50; i++) xbins[i] = 3382+(i-23)*6;
 
     sprintf(histo, "EETTT Et vs bx %s EE -", nameext);
     meEtBxReal_[0] = dqmStore_->bookProfile(histo, histo, 50, xbins, 256, 0, 256);
