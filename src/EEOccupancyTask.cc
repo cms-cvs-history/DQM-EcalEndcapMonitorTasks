@@ -1,8 +1,8 @@
 /*
  * \file EEOccupancyTask.cc
  *
- * $Date: 2011/02/14 08:01:29 $
- * $Revision: 1.87 $
+ * $Date: 2011/08/30 09:28:42 $
+ * $Revision: 1.89 $
  * \author G. Della Ricca
  * \author G. Franzoni
  *
@@ -797,7 +797,7 @@ void EEOccupancyTask::analyze(const edm::Event& e, const edm::EventSetup& c){
 
         uint32_t sev = sevlv->severityLevel(id, *rechits);
 
-        if ( rechitItr->energy() > recHitEnergyMin_ && flag == EcalRecHit::kGood && sev == EcalSeverityLevel::kGood ) {
+        if ( rechitItr->energy() > recHitEnergyMin_ && flag == EcalRecHit::kGood && sev == EcalSeverityLevelAlgo::kGood ) {
 
           if ( ism >= 1 && ism <= 9 ) {
             if ( meEERecHitOccupancyThr_[0] ) meEERecHitOccupancyThr_[0]->Fill( xeex, xeey );
@@ -811,7 +811,7 @@ void EEOccupancyTask::analyze(const edm::Event& e, const edm::EventSetup& c){
 
         }
 
-        if ( flag == EcalRecHit::kGood && sev == EcalSeverityLevel::kGood ) {
+        if ( flag == EcalRecHit::kGood && sev == EcalSeverityLevelAlgo::kGood ) {
           if ( meEERecHitEnergy_[ism-1] ) meEERecHitEnergy_[ism-1]->Fill( xix, xiy, rechitItr->energy() );
           if ( meSpectrum_[ism-1] ) meSpectrum_[ism-1]->Fill( rechitItr->energy() );
           if (  ism >= 1 && ism <= 9  ) meEERecHitSpectrum_[0]->Fill( rechitItr->energy() );
