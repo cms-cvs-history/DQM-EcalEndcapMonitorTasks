@@ -1,8 +1,8 @@
 /*
  * \file EETimingTask.cc
  *
- * $Date: 2011/09/15 21:03:25 $
- * $Revision: 1.80 $
+ * $Date: 2011/09/15 21:26:16 $
+ * $Revision: 1.78.2.3 $
  * \author G. Della Ricca
  *
 */
@@ -49,8 +49,6 @@ EETimingTask::EETimingTask(const edm::ParameterSet& ps){
 
   EcalRawDataCollection_ = ps.getParameter<edm::InputTag>("EcalRawDataCollection");
   EcalRecHitCollection_ = ps.getParameter<edm::InputTag>("EcalRecHitCollection");
-
-  L1GtEvmReadoutRecord_ = ps.getParameter<edm::InputTag>("L1GtEvmReadoutRecord");
 
   useBeamStatus_ = ps.getUntrackedParameter<bool>("useBeamStatus", false);
 
@@ -308,7 +306,7 @@ void EETimingTask::analyze(const edm::Event& e, const edm::EventSetup& c){
   ievt_++;
 
   // resetting plots when stable beam is declared
-  if( useBeamStatus_ && !stableBeamsDeclared_ ) {
+  if( useBeamStats_ && !stableBeamsDeclared_ ) {
     edm::Handle<L1GlobalTriggerEvmReadoutRecord> gtRecord;
     if( e.getByLabel(L1GtEvmReadoutRecord_, gtRecord) ) {
 
@@ -378,7 +376,7 @@ void EETimingTask::analyze(const edm::Event& e, const edm::EventSetup& c){
 
       uint32_t sev = sevlv->severityLevel(id, *hits );
 
-      if ( (flag == EcalRecHit::kGood || flag == EcalRecHit::kOutOfTime) && sev != EcalSeverityLevel::kWeird ) {
+      if ( (flag == EcalRecHit::kGood || flag == EcalRecHit::kOutOfTime) && sev != EcalSeverityLevelAlgo::kWeird ) {
         if ( meTimeAmpli ) meTimeAmpli->Fill(xval, yval);
         if ( meTimeAmpliSummary_[iz] ) meTimeAmpliSummary_[iz]->Fill(xval, yval);
         if ( hitItr->energy() > energyThreshold_ ) {
