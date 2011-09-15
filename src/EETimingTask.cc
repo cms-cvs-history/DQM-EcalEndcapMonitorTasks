@@ -1,8 +1,8 @@
 /*
  * \file EETimingTask.cc
  *
- * $Date: 2011/09/07 22:07:59 $
- * $Revision: 1.79 $
+ * $Date: 2011/09/14 14:01:50 $
+ * $Revision: 1.78.2.2 $
  * \author G. Della Ricca
  *
 */
@@ -49,8 +49,6 @@ EETimingTask::EETimingTask(const edm::ParameterSet& ps){
 
   EcalRawDataCollection_ = ps.getParameter<edm::InputTag>("EcalRawDataCollection");
   EcalRecHitCollection_ = ps.getParameter<edm::InputTag>("EcalRecHitCollection");
-
-  L1GtEvmReadoutRecord_ = ps.getParameter<edm::InputTag>("L1GtEvmReadoutRecord");
 
   for (int i = 0; i < 18; i++) {
     meTime_[i] = 0;
@@ -376,7 +374,7 @@ void EETimingTask::analyze(const edm::Event& e, const edm::EventSetup& c){
 
       uint32_t sev = sevlv->severityLevel(id, *hits );
 
-      if ( (flag == EcalRecHit::kGood || flag == EcalRecHit::kOutOfTime) && sev != EcalSeverityLevel::kWeird ) {
+      if ( (flag == EcalRecHit::kGood || flag == EcalRecHit::kOutOfTime) && sev != EcalSeverityLevelAlgo::kWeird ) {
         if ( meTimeAmpli ) meTimeAmpli->Fill(xval, yval);
         if ( meTimeAmpliSummary_[iz] ) meTimeAmpliSummary_[iz]->Fill(xval, yval);
         if ( hitItr->energy() > energyThreshold_ ) {
