@@ -1,8 +1,8 @@
 /*
  * \file EEOccupancyTask.cc
  *
- * $Date: 2011/02/14 08:01:29 $
- * $Revision: 1.87 $
+ * $Date: 2011/08/30 09:28:42 $
+ * $Revision: 1.89 $
  * \author G. Della Ricca
  * \author G. Franzoni
  *
@@ -44,6 +44,8 @@ EEOccupancyTask::EEOccupancyTask(const edm::ParameterSet& ps){
   dqmStore_ = edm::Service<DQMStore>().operator->();
 
   prefixME_ = ps.getUntrackedParameter<std::string>("prefixME", "");
+
+  subfolder_ = ps.getUntrackedParameter<std::string>("subfolder", "");
 
   enableCleanup_ = ps.getUntrackedParameter<bool>("enableCleanup", false);
 
@@ -132,6 +134,8 @@ void EEOccupancyTask::beginJob(void){
 
   if ( dqmStore_ ) {
     dqmStore_->setCurrentFolder(prefixME_ + "/EEOccupancyTask");
+    if(subfolder_.size())
+      dqmStore_->setCurrentFolder(prefixME_ + "/EEOccupancyTask/" + subfolder_);
     dqmStore_->rmdir(prefixME_ + "/EEOccupancyTask");
   }
 
@@ -223,6 +227,8 @@ void EEOccupancyTask::setup(void){
 
   if ( dqmStore_ ) {
     dqmStore_->setCurrentFolder(prefixME_ + "/EEOccupancyTask");
+    if(subfolder_.size())
+      dqmStore_->setCurrentFolder(prefixME_ + "/EEOccupancyTask/" + subfolder_);
 
     for (int i = 0; i < 18; i++) {
       name = "EEOT digi occupancy " + Numbers::sEE(i+1);
@@ -440,6 +446,8 @@ void EEOccupancyTask::cleanup(void){
 
   if ( dqmStore_ ) {
     dqmStore_->setCurrentFolder(prefixME_ + "/EEOccupancyTask");
+    if(subfolder_.size())
+      dqmStore_->setCurrentFolder(prefixME_ + "/EEOccupancyTask/" + subfolder_);
 
     for (int i = 0; i < 18; i++) {
       if ( meOccupancy_[i] ) dqmStore_->removeElement( meOccupancy_[i]->getName() );

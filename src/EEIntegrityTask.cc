@@ -1,8 +1,8 @@
 /*
  * \file EEIntegrityTask.cc
  *
- * $Date: 2010/08/08 08:46:09 $
- * $Revision: 1.56 $
+ * $Date: 2011/08/30 09:28:42 $
+ * $Revision: 1.57 $
  * \author G. Della Ricca
  *
  */
@@ -33,6 +33,8 @@ EEIntegrityTask::EEIntegrityTask(const edm::ParameterSet& ps){
   dqmStore_ = edm::Service<DQMStore>().operator->();
 
   prefixME_ = ps.getUntrackedParameter<std::string>("prefixME", "");
+
+  subfolder_ = ps.getUntrackedParameter<std::string>("subfolder", "");
 
   enableCleanup_ = ps.getUntrackedParameter<bool>("enableCleanup", false);
 
@@ -75,6 +77,8 @@ void EEIntegrityTask::beginJob(void){
 
   if ( dqmStore_ ) {
     dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask");
+    if(subfolder_.size())
+      dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/" + subfolder_);
     dqmStore_->rmdir(prefixME_ + "/EEIntegrityTask");
   }
 
@@ -124,9 +128,15 @@ void EEIntegrityTask::setup(void){
   init_ = true;
 
   std::string name;
+  std::string dir;
 
   if ( dqmStore_ ) {
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask");
+
+    dir = prefixME_ + "/EEIntegrityTask";
+    if(subfolder_.size())
+      dir += "/" + subfolder_;
+
+    dqmStore_->setCurrentFolder(dir);
 
     // checking when number of towers in data different than expected from header
     name = "EEIT DCC size error";
@@ -147,7 +157,7 @@ void EEIntegrityTask::setup(void){
     }
 
     // checking when the gain is 0
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/Gain");
+    dqmStore_->setCurrentFolder(dir + "/Gain");
     for (int i = 0; i < 18; i++) {
       name = "EEIT gain " + Numbers::sEE(i+1);
       meIntegrityGain[i] = dqmStore_->book2D(name, name, 50, Numbers::ix0EE(i+1)+0., Numbers::ix0EE(i+1)+50., 50, Numbers::iy0EE(i+1)+0., Numbers::iy0EE(i+1)+50.);
@@ -158,7 +168,7 @@ void EEIntegrityTask::setup(void){
     }
 
     // checking when channel has unexpected or invalid ID
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/ChId");
+    dqmStore_->setCurrentFolder(dir + "/ChId");
     for (int i = 0; i < 18; i++) {
       name = "EEIT ChId " + Numbers::sEE(i+1);
       meIntegrityChId[i] = dqmStore_->book2D(name, name, 50, Numbers::ix0EE(i+1)+0., Numbers::ix0EE(i+1)+50., 50, Numbers::iy0EE(i+1)+0., Numbers::iy0EE(i+1)+50.);
@@ -169,7 +179,7 @@ void EEIntegrityTask::setup(void){
     }
 
     // checking when channel has unexpected or invalid ID
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/GainSwitch");
+    dqmStore_->setCurrentFolder(dir + "/GainSwitch");
     for (int i = 0; i < 18; i++) {
       name = "EEIT gain switch " + Numbers::sEE(i+1);
       meIntegrityGainSwitch[i] = dqmStore_->book2D(name, name, 50, Numbers::ix0EE(i+1)+0., Numbers::ix0EE(i+1)+50., 50, Numbers::iy0EE(i+1)+0., Numbers::iy0EE(i+1)+50.);
@@ -180,7 +190,7 @@ void EEIntegrityTask::setup(void){
     }
 
     // checking when trigger tower has unexpected or invalid ID
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/TTId");
+    dqmStore_->setCurrentFolder(dir + "/TTId");
     for (int i = 0; i < 18; i++) {
       name = "EEIT TTId " + Numbers::sEE(i+1);
       meIntegrityTTId[i] = dqmStore_->book2D(name, name, 50, Numbers::ix0EE(i+1)+0., Numbers::ix0EE(i+1)+50., 50, Numbers::iy0EE(i+1)+0., Numbers::iy0EE(i+1)+50.);
@@ -191,7 +201,7 @@ void EEIntegrityTask::setup(void){
     }
 
     // checking when trigger tower has unexpected or invalid size
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/TTBlockSize");
+    dqmStore_->setCurrentFolder(dir + "/TTBlockSize");
     for (int i = 0; i < 18; i++) {
       name = "EEIT TTBlockSize " + Numbers::sEE(i+1);
       meIntegrityTTBlockSize[i] = dqmStore_->book2D(name, name, 50, Numbers::ix0EE(i+1)+0., Numbers::ix0EE(i+1)+50., 50, Numbers::iy0EE(i+1)+0., Numbers::iy0EE(i+1)+50.);
@@ -202,7 +212,7 @@ void EEIntegrityTask::setup(void){
     }
 
     // checking when mem channels have unexpected ID
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/MemChId");
+    dqmStore_->setCurrentFolder(dir + "/MemChId");
     for (int i = 0; i < 18; i++) {
       name = "EEIT MemChId " + Numbers::sEE(i+1);
       meIntegrityMemChId[i] = dqmStore_->book2D(name, name, 10, 0., 10., 5, 0., 5.);
@@ -214,7 +224,7 @@ void EEIntegrityTask::setup(void){
     // checking when mem samples have second bit encoding the gain different from 0
     // note: strictly speaking, this does not corrupt the mem sample gain value (since only first bit is considered)
     // but indicates that data are not completely correct
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/MemGain");
+    dqmStore_->setCurrentFolder(dir + "/MemGain");
     for (int i = 0; i < 18; i++) {
       name = "EEIT MemGain " + Numbers::sEE(i+1);
       meIntegrityMemGain[i] = dqmStore_->book2D(name, name, 10, 0., 10., 5, 0., 5.);
@@ -224,7 +234,7 @@ void EEIntegrityTask::setup(void){
     }
 
     // checking when mem tower block has unexpected ID
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/MemTTId");
+    dqmStore_->setCurrentFolder(dir + "/MemTTId");
     for (int i = 0; i < 18; i++) {
       name = "EEIT MemTTId " + Numbers::sEE(i+1);
       meIntegrityMemTTId[i] = dqmStore_->book2D(name, name, 2, 0., 2., 1, 0., 1.);
@@ -234,7 +244,7 @@ void EEIntegrityTask::setup(void){
     }
 
     // checking when mem tower block has invalid size
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/MemSize");
+    dqmStore_->setCurrentFolder(dir + "/MemSize");
     for (int i = 0; i < 18; i++) {
       name = "EEIT MemSize " + Numbers::sEE(i+1);
       meIntegrityMemTTBlockSize[i] = dqmStore_->book2D(name, name, 2, 0., 2., 1, 0., 1.);
@@ -252,7 +262,14 @@ void EEIntegrityTask::cleanup(void){
   if ( ! init_ ) return;
 
   if ( dqmStore_ ) {
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask");
+
+    std::string dir;
+
+    dir = prefixME_ + "/EEIntegrityTask";
+    if(subfolder_.size())
+      dir += "/" + subfolder_;
+
+    dqmStore_->setCurrentFolder(dir + "");
 
     if ( meIntegrityDCCSize ) dqmStore_->removeElement( meIntegrityDCCSize->getName() );
     meIntegrityDCCSize = 0;
@@ -260,55 +277,55 @@ void EEIntegrityTask::cleanup(void){
     if ( meIntegrityErrorsByLumi ) dqmStore_->removeElement( meIntegrityErrorsByLumi->getName() );
     meIntegrityErrorsByLumi = 0;
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/Gain");
+    dqmStore_->setCurrentFolder(dir + "/Gain");
     for (int i = 0; i < 18; i++) {
       if ( meIntegrityGain[i] ) dqmStore_->removeElement( meIntegrityGain[i]->getName() );
       meIntegrityGain[i] = 0;
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/ChId");
+    dqmStore_->setCurrentFolder(dir + "/ChId");
     for (int i = 0; i < 18; i++) {
       if ( meIntegrityChId[i] ) dqmStore_->removeElement( meIntegrityChId[i]->getName() );
       meIntegrityChId[i] = 0;
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/GainSwitch");
+    dqmStore_->setCurrentFolder(dir + "/GainSwitch");
     for (int i = 0; i < 18; i++) {
       if ( meIntegrityGainSwitch[i] ) dqmStore_->removeElement( meIntegrityGainSwitch[i]->getName() );
       meIntegrityGainSwitch[i] = 0;
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/TTId");
+    dqmStore_->setCurrentFolder(dir + "/TTId");
     for (int i = 0; i < 18; i++) {
       if ( meIntegrityTTId[i] ) dqmStore_->removeElement( meIntegrityTTId[i]->getName() );
       meIntegrityTTId[i] = 0;
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/TTBlockSize");
+    dqmStore_->setCurrentFolder(dir + "/TTBlockSize");
     for (int i = 0; i < 18; i++) {
       if ( meIntegrityTTBlockSize[i] ) dqmStore_->removeElement( meIntegrityTTBlockSize[i]->getName() );
       meIntegrityTTBlockSize[i] = 0;
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/MemChId");
+    dqmStore_->setCurrentFolder(dir + "/MemChId");
     for (int i = 0; i < 18; i++) {
       if ( meIntegrityMemChId[i] ) dqmStore_->removeElement( meIntegrityMemChId[i]->getName() );
       meIntegrityMemChId[i] = 0;
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/MemGain");
+    dqmStore_->setCurrentFolder(dir + "/MemGain");
     for (int i = 0; i < 18; i++) {
       if ( meIntegrityMemGain[i] ) dqmStore_->removeElement( meIntegrityMemGain[i]->getName() );
       meIntegrityMemGain[i] = 0;
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/MemTTId");
+    dqmStore_->setCurrentFolder(dir + "/MemTTId");
     for (int i = 0; i < 18; i++) {
       if ( meIntegrityMemTTId[i] ) dqmStore_->removeElement( meIntegrityMemTTId[i]->getName() );
       meIntegrityMemTTId[i] = 0;
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEIntegrityTask/MemSize");
+    dqmStore_->setCurrentFolder(dir + "/MemSize");
     for (int i = 0; i < 18; i++) {
       if ( meIntegrityMemTTBlockSize[i] ) dqmStore_->removeElement( meIntegrityMemTTBlockSize[i]->getName() );
       meIntegrityMemTTBlockSize[i] = 0;
