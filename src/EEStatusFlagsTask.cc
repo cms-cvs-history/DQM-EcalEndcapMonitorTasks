@@ -1,8 +1,8 @@
 /*
  * \file EEStatusFlagsTask.cc
  *
- * $Date: 2010/10/04 11:16:02 $
- * $Revision: 1.38 $
+ * $Date: 2011/08/30 09:28:42 $
+ * $Revision: 1.39 $
  * \author G. Della Ricca
  *
 */
@@ -34,6 +34,8 @@ EEStatusFlagsTask::EEStatusFlagsTask(const edm::ParameterSet& ps){
 
   prefixME_ = ps.getUntrackedParameter<std::string>("prefixME", "");
 
+  subfolder_ = ps.getUntrackedParameter<std::string>("subfolder", "");
+
   enableCleanup_ = ps.getUntrackedParameter<bool>("enableCleanup", false);
 
   mergeRuns_ = ps.getUntrackedParameter<bool>("mergeRuns", false);
@@ -62,6 +64,8 @@ void EEStatusFlagsTask::beginJob(void){
 
   if ( dqmStore_ ) {
     dqmStore_->setCurrentFolder(prefixME_ + "/EEStatusFlagsTask");
+    if(subfolder_.size())
+      dqmStore_->setCurrentFolder(prefixME_ + "/EEStatusFlagsTask/" + subfolder_);
     dqmStore_->rmdir(prefixME_ + "/EEStatusFlagsTask");
   }
 
@@ -106,11 +110,16 @@ void EEStatusFlagsTask::setup(void){
   init_ = true;
 
   std::string name;
+  std::string dir;
 
   if ( dqmStore_ ) {
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEStatusFlagsTask");
+    dir = prefixME_ + "/EEStatusFlagsTask";
+    if(subfolder_.size())
+      dir = prefixME_ + "/EEStatusFlagsTask/" + subfolder_;
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEStatusFlagsTask/EvtType");
+    dqmStore_->setCurrentFolder(dir);
+
+    dqmStore_->setCurrentFolder(dir + "/EvtType");
     for (int i = 0; i < 18; i++) {
       name = "EESFT EVTTYPE " + Numbers::sEE(i+1);
       meEvtType_[i] = dqmStore_->book1D(name, name, 31, -1., 30.);
@@ -141,7 +150,7 @@ void EEStatusFlagsTask::setup(void){
       dqmStore_->tag(meEvtType_[i], i+1);
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEStatusFlagsTask/FEStatus");
+    dqmStore_->setCurrentFolder(dir + "/FEStatus");
     for (int i = 0; i < 18; i++) {
       name = "EESFT front-end status " + Numbers::sEE(i+1);
       meFEchErrors_[i][0] = dqmStore_->book2D(name, name, 50, Numbers::ix0EE(i+1)+0., Numbers::ix0EE(i+1)+50., 50, Numbers::iy0EE(i+1)+0., Numbers::iy0EE(i+1)+50.);
@@ -196,15 +205,19 @@ void EEStatusFlagsTask::cleanup(void){
   if ( ! init_ ) return;
 
   if ( dqmStore_ ) {
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEStatusFlagsTask");
+    std::string dir = prefixME_ + "/EEStatusFlagsTask";
+    if(subfolder_.size())
+      dir = prefixME_ + "/EEStatusFlagsTask/" + subfolder_;
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEStatusFlagsTask/EvtType");
+    dqmStore_->setCurrentFolder(dir + "");
+
+    dqmStore_->setCurrentFolder(dir + "/EvtType");
     for (int i = 0; i < 18; i++) {
       if ( meEvtType_[i] ) dqmStore_->removeElement( meEvtType_[i]->getName() );
       meEvtType_[i] = 0;
     }
 
-    dqmStore_->setCurrentFolder(prefixME_ + "/EEStatusFlagsTask/FEStatus");
+    dqmStore_->setCurrentFolder(dir + "/FEStatus");
     for (int i = 0; i < 18; i++) {
       if ( meFEchErrors_[i][0] ) dqmStore_->removeElement( meFEchErrors_[i][0]->getName() );
       meFEchErrors_[i][0] = 0;

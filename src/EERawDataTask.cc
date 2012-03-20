@@ -1,8 +1,8 @@
 /*
  * \file EERawDataTask.cc
  *
- * $Date: 2010/08/11 14:57:35 $
- * $Revision: 1.37 $
+ * $Date: 2011/08/30 09:28:42 $
+ * $Revision: 1.38 $
  * \author E. Di Marco
  *
 */
@@ -36,6 +36,8 @@ EERawDataTask::EERawDataTask(const edm::ParameterSet& ps) {
   dqmStore_ = edm::Service<DQMStore>().operator->();
 
   prefixME_ = ps.getUntrackedParameter<std::string>("prefixME", "");
+
+  subfolder_ = ps.getUntrackedParameter<std::string>("subfolder", "");
 
   enableCleanup_ = ps.getUntrackedParameter<bool>("enableCleanup", false);
 
@@ -76,6 +78,8 @@ void EERawDataTask::beginJob(void){
 
   if ( dqmStore_ ) {
     dqmStore_->setCurrentFolder(prefixME_ + "/EERawDataTask");
+    if(subfolder_.size())
+      dqmStore_->setCurrentFolder(prefixME_ + "/EERawDataTask/" + subfolder_);
     dqmStore_->rmdir(prefixME_ + "/EERawDataTask");
   }
 
@@ -129,6 +133,8 @@ void EERawDataTask::setup(void){
 
   if ( dqmStore_ ) {
     dqmStore_->setCurrentFolder(prefixME_ + "/EERawDataTask");
+    if(subfolder_.size())
+      dqmStore_->setCurrentFolder(prefixME_ + "/EERawDataTask/" + subfolder_);
 
     name = "EERDT event type pre calibration BX";
     meEEEventTypePreCalibrationBX_ = dqmStore_->book1D(name, name, 31, -1., 30.);
@@ -306,6 +312,8 @@ void EERawDataTask::cleanup(void){
 
   if ( dqmStore_ ) {
     dqmStore_->setCurrentFolder(prefixME_ + "/EERawDataTask");
+    if(subfolder_.size())
+      dqmStore_->setCurrentFolder(prefixME_ + "/EERawDataTask/" + subfolder_);
 
     if ( meEEEventTypePreCalibrationBX_ ) dqmStore_->removeElement( meEEEventTypePreCalibrationBX_->getName() );
     meEEEventTypePreCalibrationBX_ = 0;
