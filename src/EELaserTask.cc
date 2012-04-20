@@ -1,8 +1,8 @@
 /*
  * \file EELaserTask.cc
  *
- * $Date: 2011/10/28 14:15:47 $
- * $Revision: 1.78 $
+ * $Date: 2012/04/13 17:59:51 $
+ * $Revision: 1.78.2.1 $
  * \author G. Della Ricca
  *
 */
@@ -781,6 +781,7 @@ void EELaserTask::analyze(const edm::Event& e, const edm::EventSetup& c){
     int maxpos[10];
     for(int i(0); i < 10; i++)
       maxpos[i] = 0;
+    int nReadouts(0);
 
     for ( EEDigiCollection::const_iterator digiItr = digis->begin(); digiItr != digis->end(); ++digiItr ) {
 
@@ -792,6 +793,8 @@ void EELaserTask::analyze(const edm::Event& e, const edm::EventSetup& c){
                runType[ism-1] == EcalDCCHeaderBlock::LASER_GAP ) ) continue;
 
       if ( rtHalf[ism-1] != Numbers::RtHalf(id) ) continue;
+
+      nReadouts++;
 
       EEDataFrame dataframe = (*digiItr);
 
@@ -812,7 +815,7 @@ void EELaserTask::analyze(const edm::Event& e, const edm::EventSetup& c){
 
     }
 
-    int threshold = 600;
+    int threshold(nReadouts / 2);
     enable = false;
     for(int i(0); i < 10; i++){
       if(maxpos[i] > threshold){
